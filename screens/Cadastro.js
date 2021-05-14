@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, Text, TextInput, Picker } from "react-native";
 import { styleFormat } from "../css/styles";
 import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
+import { ipserver } from "../config/settings";
 
 let us = "";
 let sh = "";
@@ -159,10 +160,43 @@ export default function Cadastro() {
         </View>
         {/* Fim da área de cadastro do contato */}
 
-        <TouchableOpacity style={styleFormat.btnCadastro}>
+        <TouchableOpacity style={styleFormat.btnCadastro}
+          onPress={()=>{
+            us = usuario;
+            sh = senha;
+            nc = nomecliente;
+            cf = cpf;
+            sx = sexo;
+            lg = logradouro;
+            nr = numero;
+            cp = complemento;
+            br = bairro;
+            ce = cep;
+            tl = telefone;
+            em = email;
+
+            efetuarCadastro();
+
+          }}
+        >
           <Text style={styleFormat.txtCadastro}> Cadastrar </Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
   );
+}
+
+function efetuarCadastro(){
+
+  fetch(`${ipserver}/usuario/cadastro`,{
+    method:"POST",
+    headers:{
+      accept:"application/json",
+      "content-type":"application/json"
+    },
+    body:JSON.stringify({
+      nomeusuario:us,
+      senha:sh
+    })
+  })
 }
