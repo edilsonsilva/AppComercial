@@ -40,10 +40,10 @@ export default function Cadastro() {
   const [email, setEmail] = React.useState("");
 
   return (
-    <View>
+    <View style={styleFormat.container}>
       <ScrollView horizontal={false}>
         {/* Área do cadastro de usuário */}
-        <View>
+        <View style={styleFormat.cxinput}>
           <TextInput
             style={styleFormat.input}
             placeholder="Nome Usuário"
@@ -64,7 +64,7 @@ export default function Cadastro() {
         {/* Fim da área de cadastro do usuário */}
 
         {/* Área do cadastro do cliente */}
-        <View>
+        <View style={styleFormat.cxinput}>
           <TextInput
             style={styleFormat.input}
             placeholder="Nome Cliente"
@@ -80,12 +80,23 @@ export default function Cadastro() {
             keyboardType="number-pad"
             onChangeText={(value) => setCPF(value)}
           />
+
+          <Picker
+            mode="dropdown"
+            selectedValue={sexo}
+            onValueChange={setSexo}
+            style={styleFormat.input}
+          >
+            <Picker.Item label="Masculino" value="M" />
+            <Picker.Item label="Feminino" value="F" />
+            <Picker.Item label="Outros" value="O" />
+          </Picker>
         </View>
 
         {/* Fim da área de cadastro do cliente */}
 
         {/* Área do cadastro do endereço */}
-        <View>
+        <View style={styleFormat.cxinput}>
           <TextInput
             style={styleFormat.input}
             placeholder="Logradouro"
@@ -129,7 +140,7 @@ export default function Cadastro() {
         {/* Fim da área de cadastro do endereço */}
 
         {/* Área do cadastro do contato */}
-        <View>
+        <View style={styleFormat.cxinput}>
           <TextInput
             style={styleFormat.input}
             placeholder="Telefone"
